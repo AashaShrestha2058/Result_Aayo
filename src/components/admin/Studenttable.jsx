@@ -60,7 +60,7 @@ export default function Studenttable() {
                 alt=" image"
               />
               <div className="ps-3">
-                <div className="text-base font-semibold">Supriya Shrestha</div>
+                <div className="text-base font-semibold">Aasha Shrestha</div>
               </div>
             </th>
             <td className="px-6 py-4">supriyabicte@gmail.com</td>
