@@ -96,7 +96,8 @@
 
 import React, { useEffect, useState } from 'react';
 import supabase from '@/utils/client'; // Adjust the path if needed
-
+import Link from 'next/link';
+import Addteacher from '@/components/admin/Addteacher';
 export default function Teachertable() {
   const [teachers, setTeachers] = useState([]);
 
@@ -117,9 +118,13 @@ export default function Teachertable() {
 
   return (
     <div className="relative overflow-x-auto shadow-md ">
-      <button className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xs absolute top-4 right-4">
-        +Add Teacher
-      </button>
+       
+            <Link href="Addteacher" className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xs absolute top-4 right-4">
+                 
+                    +Add Teacher
+                
+            </Link>
+      
 
       <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 mt-16"></div>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

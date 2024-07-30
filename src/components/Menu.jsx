@@ -21,7 +21,7 @@ const Menu = ({ setMenuOpen }) => {
     { title: "Teacher", icon: <CgProfile />, path: "/admin/teacher" },
     { title: "Student", icon: <FaGraduationCap />, path: "/admin/student" },
     { title: "Exam", icon: <FaClipboardCheck />, path: "/admin/exam" },
-    { title: "Ledger", icon: <IoIosClipboard /> },
+    { title: "Ledger", icon: <IoIosClipboard />, path:"/admin/ledger"},
     { title: "Class", icon: <GiTeacher /> },
     { title: "Notice", icon: <IoIosMailUnread /> },
   ];
