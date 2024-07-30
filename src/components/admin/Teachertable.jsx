@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Teachertable() {
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative overflow-x-auto shadow-md ">
       <button className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xs absolute top-4 right-4">
         +Add Teacher
       </button>

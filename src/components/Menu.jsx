@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ushe, useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { RiDashboardFill } from "react-icons/ri";
 import { AiFillEnvironment } from "react-icons/ai";
@@ -13,18 +13,22 @@ import { FaGraduationCap } from "react-icons/fa";
 import { IoIosMailUnread } from "react-icons/io";
 import { FaClipboardCheck } from "react-icons/fa6";
 
-const Menu = () => {
+const Menu = ({ setMenuOpen }) => {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const Menus = [
     { title: "Home", path: "/admin" },
     { title: "Teacher", icon: <CgProfile />, path: "/admin/teacher" },
     { title: "Student", icon: <FaGraduationCap />, path: "/admin/student" },
-    { title: "Exam", icon: <FaClipboardCheck /> },
+    { title: "Exam", icon: <FaClipboardCheck />, path: "/admin/exam" },
     { title: "Ledger", icon: <IoIosClipboard /> },
     { title: "Class", icon: <GiTeacher /> },
     { title: "Notice", icon: <IoIosMailUnread /> },
   ];
+
+  useEffect(() => {
+    setMenuOpen(open);
+  }, [open, setMenuOpen]);
 
   return (
     <div>
@@ -57,24 +61,22 @@ const Menu = () => {
 
         <ul className="pt-2">
           {Menus.map((menu, index) => (
-            <>
-              <li
-                key={index}
-                className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-4 hover:bg-[#8AA4D6] rounded-md mt-2 `}
-                onClick={() => router.push(menu.path)}
+            <li
+              key={index}
+              className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-4 hover:bg-[#8AA4D6] rounded-md mt-2 `}
+              onClick={() => router.push(menu.path)}
+            >
+              <span className="text-2xl block float-left  ">
+                {menu.icon ? menu.icon : <RiDashboardFill />}
+              </span>
+              <span
+                className={`text-base font-medium flex-1 duration-200 ${
+                  !open && "hidden"
+                }`}
               >
-                <span className="text-2xl block float-left  ">
-                  {menu.icon ? menu.icon : <RiDashboardFill />}
-                </span>
-                <span
-                  className={`text-base font-medium flex-1 duration-200 ${
-                    !open && "hidden"
-                  }`}
-                >
-                  {menu.title}
-                </span>
-              </li>
-            </>
+                {menu.title}
+              </span>
+            </li>
           ))}
         </ul>
       </div>
