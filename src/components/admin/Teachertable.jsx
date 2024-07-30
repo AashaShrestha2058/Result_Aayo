@@ -1,23 +1,16 @@
-// "use client" directive tells Next.js to treat this file as a Client Component
 "use client";
-import Link from 'next/link';
-
 
 import React, { useEffect, useState } from "react";
-import supabase from "@/utils/client"; // Adjust the path if needed
+import supabase from "@/utils/client";
+import Addteacher from "@/components/admin/Addteacher";
 
-import React, { useEffect, useState } from 'react';
-import supabase from '@/utils/client'; // Adjust the path if needed
-import Link from 'next/link';
-import Addteacher from '@/components/admin/Addteacher';
 export default function Teachertable() {
   const [teachers, setTeachers] = useState([]);
+  const [showAddTeacher, setShowAddTeacher] = useState(false);
 
   useEffect(() => {
     const fetchTeachers = async () => {
-      const { data, error } = await supabase
-        .from("teachers") // Updated table name
-        .select("*");
+      const { data, error } = await supabase.from("teachers").select("*");
       if (error) {
         console.error("Error fetching data:", error);
       } else {
@@ -29,14 +22,19 @@ export default function Teachertable() {
   }, []);
 
   return (
-    <div className="relative overflow-x-auto shadow-md ">
-       
-            <Link href="Addteacher" className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xs absolute top-4 right-4">
-                 
-                    +Add Teacher
-                
-            </Link>
-      
+    <div className="relative overflow-x-auto shadow-md">
+      <button
+        onClick={() => setShowAddTeacher(true)}
+        className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xs absolute top-4 right-4"
+      >
+        +Add Teacher
+      </button>
+
+      {showAddTeacher && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[101]">
+          <Addteacher onClose={() => setShowAddTeacher(false)} />
+        </div>
+      )}
 
       <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900 mt-16"></div>
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -12,8 +12,9 @@ export default function Redirect() {
   }, [router]);
 
   return (
-    <div>
-      <h1>Redirecting...</h1>
+    <div className="flex justify-center h-screen w-full">
+      <h1>.</h1>
+      <img src="/assets/Darlayooo.png" />
     </div>
   );
 }
