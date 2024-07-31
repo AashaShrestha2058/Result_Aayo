@@ -1,29 +1,28 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import React from "react";
 import { RiDashboardFill } from "react-icons/ri";
 import { AiFillEnvironment } from "react-icons/ai";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { GiTeacher } from "react-icons/gi";
-import { IoIosClipboard } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
-import { FaGraduationCap } from "react-icons/fa";
-import { IoIosMailUnread } from "react-icons/io";
-import { FaClipboardCheck } from "react-icons/fa6";
-import path from "path";
+import { FaGraduationCap, FaClipboardCheck, FaChalkboardTeacher } from "react-icons/fa";
+import { IoIosClipboard } from "react-icons/io";
+import { MdNotificationsActive } from "react-icons/md";
 
-const Menu = ({ setMenuOpen, currentPath }) => {
+const Menu = ({ setMenuOpen }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = useState(true);
   const Menus = [
     { title: "Dashboard", path: "/admin/Admindashboard" },
     { title: "Teacher", icon: <CgProfile />, path: "/admin/teacher" },
-    { title: "Student", icon: <FaGraduationCap />, path: "/admin/student" },
     { title: "Exam", icon: <FaClipboardCheck />, path: "/admin/exam" },
     { title: "Ledger", icon: <IoIosClipboard />, path:"/admin/ledger"},
-
+    { title: "Student", icon: <FaGraduationCap />, path: "/admin/student" },
+    { title: "Class", icon: <FaChalkboardTeacher />, path: "/admin/class" },
+    { title: "Notice", icon: <MdNotificationsActive />, path: "/admin/notice" },
   ];
 
   useEffect(() => {
@@ -35,10 +34,10 @@ const Menu = ({ setMenuOpen, currentPath }) => {
       <div
         className={`bg-[#253553] h-screen p-5 pt-8 ${
           open ? "w-72" : "w-20"
-        } duratiom-300 relative`}
+        } duration-300 relative`}
       >
         <BsArrowLeftShort
-          className={`bg-white text-[#253553] text-3xl rounded-full absolute -right-3 top=9 border border-[#253553] cursor-pointer" 
+          className={`bg-white text-[#253553] text-3xl rounded-full absolute -right-3 top-9 border border-[#253553] cursor-pointer 
           ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
@@ -46,11 +45,11 @@ const Menu = ({ setMenuOpen, currentPath }) => {
         <div className="inline-flex">
           <AiFillEnvironment
             className={`bg-blue-300 ml-3 text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${
-              open && "  rotate-[360deg]"
+              open && "rotate-[360deg]"
             }`}
           />
           <h1
-            className={`text-white origin-left font-medium text-2xl duration-300  ${
+            className={`text-white origin-left font-medium text-2xl duration-300 ${
               !open && "scale-0"
             }`}
           >
@@ -63,7 +62,7 @@ const Menu = ({ setMenuOpen, currentPath }) => {
             <li
               key={index}
               className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-4 hover:bg-[#8AA4D6] rounded-md mt-2 ${
-                currentPath === menu.path ? "bg-[#8AA4D6]" : ""
+                pathname === menu.path ? "bg-[#8AA4D6] text-white font-bold" : ""
               }`}
               onClick={() => router.push(menu.path)}
             >

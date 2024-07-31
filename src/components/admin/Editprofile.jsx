@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { FaUser, FaEdit, FaSignOutAlt, FaExclamationTriangle, FaTimes } from 'react-icons/fa';
+import { FaUser, FaEdit, FaSignOutAlt, FaExclamationTriangle, FaTimes, FaEnvelope, FaPhone, FaCalendar } from 'react-icons/fa';
 
 export default function EditProfile() {
   const router = useRouter();
@@ -11,6 +11,8 @@ export default function EditProfile() {
   const [profile, setProfile] = useState({
     name: 'Admin User',
     email: 'admin@example.com',
+    phone: '+1 234 567 8900',
+    joinDate: '2023-01-01',
     avatar: '/assets/admin-avatar.png'
   });
 
@@ -95,6 +97,32 @@ export default function EditProfile() {
           type="email"
           name="email"
           value={profile.email}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
+          Phone
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="phone"
+          type="tel"
+          name="phone"
+          value={profile.phone}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="joinDate">
+          Join Date
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="joinDate"
+          type="date"
+          name="joinDate"
+          value={profile.joinDate}
           onChange={handleChange}
         />
       </div>
