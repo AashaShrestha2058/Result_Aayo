@@ -12,7 +12,7 @@ function Home() {
             />
             <img
               src="/assets/Cloud 1.png"
-              className="animate-[spin_10s_linear_infinite]  mt-[-40%] "
+              className="  mt-[-40%] "
             />
           </div>
           <div className="h-[90%]">

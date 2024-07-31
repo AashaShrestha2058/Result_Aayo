@@ -24,24 +24,16 @@ export default function Navbar() {
         <div className="flex justify-between">
           <ul className="hidden md:flex ">
             <Link href="Home">
-              <li className="ml-10  text-white text-m uppercase hover:border-b">
-                Home
-              </li>
+              <li className="ml-10  text-white text-m uppercase hover:border-b">Home</li>
             </Link>
             <Link href="Notice">
-              <li className="ml-10 text-white text-m uppercase hover:border-b">
-                Notice
-              </li>
+              <li className="ml-10 text-white text-m uppercase hover:border-b">Notice</li>
             </Link>
             <Link href="About">
-              <li className="ml-10 text-white text-m uppercase hover:border-b">
-                About us
-              </li>
+              <li className="ml-10 text-white text-m uppercase hover:border-b">About us</li>
             </Link>
             <Link href="Module">
-              <li className="ml-10 text-white text-m uppercase hover:border-b">
-                Module
-              </li>
+              <li className="ml-10 text-white text-m uppercase hover:border-b">Module</li>
             </Link>
             <Darklightmode />
             <button
@@ -56,9 +48,74 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      {/* Rest of your existing Navbar code */}
+      <div className={nav ? 'md:hidden fixed left-0 top-0 w-full h-screen bg-black/70' : ''}>
+        <div
+          className={
+            nav
+              ? ' fixed left-0 top-0 w-[75%] sm:w-[60%] md:w-[45%] h-screen bg-[#ecf0f3] p-10 ease-in duration-500'
+              : 'fixed left-[-100%] top-0 p-10 ease-in duration-500'
+          }
+        >
+          <div>
+            <div className='flex w-full items-center justify-between'>
+              <Image src="/assets/Logo.png" width='200' height="35"/>
+              <div onClick={navhandle} className="rounded-full shadow-lg shadow-gray-500 p-3 cursor-pointer">
+                <AiOutlineClose/>
+              </div>
+            </div>
+            <div className='py-4 flex flex-col'>
+              <ul className="uppercase">
+                <Link href="Home">
+                  <li onClick={() => setNav(false)} className='py-4 text-sm'>Home</li>
+                </Link>
+                <Link href="Notice">
+                  <li onClick={() => setNav(false)} className='py-4 text-sm'>Notice</li>
+                </Link>
+                <Link href="About">
+                  <li onClick={() => setNav(false)} className='py-4 text-sm'>About us</li>
+                </Link>
+                <Link href="Module">
+                  <li onClick={() => setNav(false)} className='py-4 text-sm'>Module</li>
+                </Link>
+                <button
+                  onClick={() => {
+                    setShowLogin(true);
+                    setNav(false);
+                  }}
+                  className="text-white p-2 sm:col-span-4 h-10 justify-left shadow-xl font-bold bg-gradient-to-r from-indigo-400 to-indigo-600 text-2xl rounded-xl hover:scale-105 duration-300"
+                >
+                  Login
+                </button>
+              </ul>
+              <div className="pt-40">
+                <p className="uppercase tracking-widest text-[#5651e5]">Let's connect</p>
+                <div className='flex items-center justify-between my-4 w-full sm:w-[80%]'>
+                  <a href='https://www.linkedin.com/feed/' target='_blank' rel='noreferrer'>
+                    <div className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'>
+                      <FaLinkedinIn />
+                    </div>
+                  </a>
+                  <a href='https://github.com/AashaShrestha2058' target='_blank' rel='noreferrer'>
+                    <div className="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-205 ease-in duration-300">
+                      <FaGithub/>
+                    </div>
+                  </a>
+                  <Link href='About'>
+                    <div
+                      onClick={() => setNav(!nav)}
+                      className='rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-105 ease-in duration-300'
+                    >
+                      <AiOutlineMail />
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {showLogin && (
-        <div className="fixed inset-0 bg-black bg-opacity-60  flex items-center justify-center z-[101]">
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[101]">
           <Login onClose={() => setShowLogin(false)} />
         </div>
       )}
