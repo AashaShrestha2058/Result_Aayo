@@ -12,6 +12,7 @@ import { CgProfile } from "react-icons/cg";
 import { FaGraduationCap } from "react-icons/fa";
 import { IoIosMailUnread } from "react-icons/io";
 import { FaClipboardCheck } from "react-icons/fa6";
+import path from "path";
 
 const Menu = ({ setMenuOpen }) => {
   const router = useRouter();
@@ -22,7 +23,7 @@ const Menu = ({ setMenuOpen }) => {
     { title: "Student", icon: <FaGraduationCap />, path: "/admin/student" },
     { title: "Exam", icon: <FaClipboardCheck />, path: "/admin/exam" },
     { title: "Ledger", icon: <IoIosClipboard />, path:"/admin/ledger"},
-    { title: "Class", icon: <GiTeacher /> },
+    { title: "Class", icon: <GiTeacher /> ,path:"/admin/class"},
     { title: "Notice", icon: <IoIosMailUnread /> },
   ];
 
