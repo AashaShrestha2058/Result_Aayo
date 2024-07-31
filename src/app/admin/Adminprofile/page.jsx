@@ -1,11 +1,14 @@
 import React from "react";
 
-import Admindashboard from "@/components/admin/Admindashboard";
+import AdminProfile from "../../../components/admin/Adminprofile";
+
+
 const page = () => {
   return (
     <div className="">
-    <Admindashboard/>
-    </div>  
+  <AdminProfile/>
+  
+    </div>
   );
 };
 
