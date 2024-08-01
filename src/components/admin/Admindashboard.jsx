@@ -31,7 +31,6 @@ export default function Admindashboard() {
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <RecentActivityFeed />
           <QuickActions />
         </div>
       </main>
@@ -51,24 +50,6 @@ function StatCard({ icon, title, value }) {
           <dd className="text-lg font-semibold text-gray-900">{value}</dd>
         </div>
       </div>
-    </div>
-  );
-}
-
-function RecentActivityFeed() {
-  return (
-    <div className="bg-white shadow rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
-      <ul className="mt-4 space-y-4">
-        <li className="flex space-x-3">
-          <FaUsers className="flex-shrink-0 h-5 w-5 text-gray-400" />
-          <div className="flex-1 space-y-1">
-            <p className="text-sm text-gray-600">New student enrolled</p>
-            <p className="text-xs text-gray-500">2 hours ago</p>
-          </div>
-        </li>
-        {/* Add more activity items here */}
-      </ul>
     </div>
   );
 }
