@@ -63,7 +63,7 @@ const Menu = ({ setMenuOpen }) => {
               key={index}
               className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-4 hover:bg-[#8AA4D6] rounded-md mt-2 ${
                 pathname === menu.path ? "bg-[#8AA4D6] text-white font-bold" : ""
-              }`}
+              } relative group`}
               onClick={() => router.push(menu.path)}
             >
               <span className="text-2xl block float-left">
@@ -76,6 +76,11 @@ const Menu = ({ setMenuOpen }) => {
               >
                 {menu.title}
               </span>
+              {!open && (
+                <div className="absolute left-full rounded-md px-2 py-1 ml-6 bg-[#8AA4D6] text-white text-sm invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
+                  {menu.title}
+                </div>
+              )}
             </li>
           ))}
         </ul>
