@@ -18,9 +18,9 @@ const Menu = ({ setMenuOpen }) => {
   const Menus = [
     { title: "Dashboard", path: "/admin/Admindashboard" },
     { title: "Teacher", icon: <CgProfile />, path: "/admin/teacher" },
+    { title: "Student", icon: <FaGraduationCap />, path: "/admin/student" },
     { title: "Exam", icon: <FaClipboardCheck />, path: "/admin/exam" },
     { title: "Ledger", icon: <IoIosClipboard />, path:"/admin/ledger"},
-    { title: "Student", icon: <FaGraduationCap />, path: "/admin/student" },
     { title: "Class", icon: <FaChalkboardTeacher />, path: "/admin/class" },
     { title: "Notice", icon: <MdNotificationsActive />, path: "/admin/notice" },
   ];
@@ -77,7 +77,7 @@ const Menu = ({ setMenuOpen }) => {
                 {menu.title}
               </span>
               {!open && (
-                <div className="absolute left-full rounded-md px-2 py-1 ml-6 bg-[#8AA4D6] text-white text-sm invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 rounded-md px-2 py-1 mb-2 bg-[#8AA4D6] text-white text-sm invisible opacity-20 translate-y-1 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-y-0">
                   {menu.title}
                 </div>
               )}
