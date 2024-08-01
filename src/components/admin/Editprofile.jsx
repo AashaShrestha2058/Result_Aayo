@@ -1,19 +1,28 @@
 "use client";
 
-import { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import { FaUser, FaEdit, FaSignOutAlt, FaExclamationTriangle, FaTimes, FaEnvelope, FaPhone, FaCalendar } from 'react-icons/fa';
+import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import {
+  FaUser,
+  FaEdit,
+  FaSignOutAlt,
+  FaExclamationTriangle,
+  FaTimes,
+  FaEnvelope,
+  FaPhone,
+  FaCalendar,
+} from "react-icons/fa";
 
 export default function EditProfile() {
   const router = useRouter();
   const fileInputRef = useRef(null);
   const [profile, setProfile] = useState({
-    name: 'Admin User',
-    email: 'admin@example.com',
-    phone: '+1 234 567 8900',
-    joinDate: '2023-01-01',
-    avatar: '/assets/admin-avatar.png'
+    name: "Admin User",
+    email: "admin@example.com",
+    phone: "+1 234 567 8900",
+    joinDate: "2023-01-01",
+    avatar: "/assets/Rabin.jpg",
   });
 
   const handleChange = (e) => {
@@ -32,12 +41,12 @@ export default function EditProfile() {
   };
 
   const handleSave = () => {
-    console.log('Profile updated:', profile);
-    router.push('/admin');
+    console.log("Profile updated:", profile);
+    router.push("/admin");
   };
 
   const handleClose = () => {
-    router.push('/admin');
+    router.push("/admin");
   };
 
   return (
@@ -49,15 +58,14 @@ export default function EditProfile() {
         <FaTimes size={24} />
       </button>
       <h1 className="text-2xl font-bold mb-6">Edit Profile</h1>
-      
+
       <div className="flex items-center mb-4">
         <div className="relative">
-          <Image 
-            src={profile.avatar}  
-            width={100} 
-            height={100} 
-            alt="Admin Avatar" 
-            className="rounded-full border-4 border-blue-900" 
+          <Image
+            src={profile.avatar}
+            width={100}
+            height={100}
+            alt="Admin Avatar"
           />
         </div>
         <button
@@ -75,7 +83,10 @@ export default function EditProfile() {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="name"
+        >
           Name
         </label>
         <input
@@ -88,7 +99,10 @@ export default function EditProfile() {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="email"
+        >
           Email
         </label>
         <input
@@ -101,7 +115,10 @@ export default function EditProfile() {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="phone"
+        >
           Phone
         </label>
         <input
@@ -114,7 +131,10 @@ export default function EditProfile() {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="joinDate">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="joinDate"
+        >
           Join Date
         </label>
         <input
