@@ -1,10 +1,13 @@
 import React from "react";
+import Teacherdashboard from "../../../components/teacher/Teacherdashboard";
 
-import Admindashboard from "@/components/admin/Admindashboard";
+
+
 const page = () => {
   return (
     <div className="">
-      <Admindashboard />
+  <Teacherdashboard/>
+  
     </div>
   );
 };

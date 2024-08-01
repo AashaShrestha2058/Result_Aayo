@@ -13,7 +13,6 @@ export default function Redirect() {
 
   return (
     <div className="flex justify-center h-screen w-full">
-      <h1>.</h1>
       <img src="/assets/Darlayooo.png" />
     </div>
   );

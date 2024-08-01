@@ -29,7 +29,7 @@ export default function Login({ onClose }) {
 
     if (data.password === Password) {
       setErrorMessage("");
-      router.push("/admin");
+      router.push("/teacher");
     } else {
       setErrorMessage("Login failed: Invalid username or password.");
     }
