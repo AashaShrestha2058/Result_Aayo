@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Menu from "@/components/Menu";
+import Smenu from "@/components/Smenu";
 import Dnav from "../../components/Dnav";
 import Copyright from "../../components/Mini Component/Copyright";
 
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
               menuOpen ? "w-72" : "w-15"
             } transition-all duration-300`}
           >
-            <Menu setMenuOpen={setMenuOpen} />
+            <Smenu setMenuOpen={setMenuOpen} />
           </div>
           <div className="flex-1">
             <main>{children}</main>

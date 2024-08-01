@@ -6,13 +6,13 @@ import {
   FaBook,
 } from "react-icons/fa";
 
-export default function Admindashboard() {
+export default function Studentdashboard() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4">
           <h1 className="text-3xl font-bold text-gray-900">
-            School Admin Dashboard
+            Student Dashboard
           </h1>
         </div>
       </header>
@@ -32,7 +32,6 @@ export default function Admindashboard() {
 
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <RecentActivityFeed />
-          <QuickActions />
         </div>
       </main>
     </div>
@@ -69,28 +68,6 @@ function RecentActivityFeed() {
         </li>
         {/* Add more activity items here */}
       </ul>
-    </div>
-  );
-}
-
-function QuickActions() {
-  return (
-    <div className="bg-white shadow rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-gray-900">Quick Actions</h3>
-      <div className="mt-4 grid grid-cols-2 gap-4">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-          Add Student
-        </button>
-        <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
-          Add Teacher
-        </button>
-        <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
-          View Classes
-        </button>
-        <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
-          Create Exam
-        </button>
-      </div>
     </div>
   );
 }
