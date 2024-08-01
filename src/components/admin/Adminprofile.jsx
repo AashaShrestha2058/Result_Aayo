@@ -1,18 +1,24 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { FaUser, FaEnvelope, FaPhone, FaCalendar, FaTimes } from 'react-icons/fa';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import {
+  FaUser,
+  FaEnvelope,
+  FaPhone,
+  FaCalendar,
+  FaTimes,
+} from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function AdminProfile() {
   const router = useRouter();
   const [profile, setProfile] = useState({
-    name: 'Admin User',
-    email: 'admin@example.com',
-    phone: '+1 234 567 8900',
-    joinDate: '2023-01-01',
-    avatar: '/assets/admin-avatar.png'
+    name: "Admin User",
+    email: "admin@example.com",
+    phone: "+1 234 567 8900",
+    joinDate: "2023-01-01",
+    avatar: "/assets/Rabin.jpg",
   });
 
   useEffect(() => {
@@ -21,7 +27,7 @@ export default function AdminProfile() {
   }, []);
 
   const handleClose = () => {
-    router.push('/admin'); // Adjust this path as needed
+    router.push("/admin"); // Adjust this path as needed
   };
 
   return (
@@ -45,9 +51,17 @@ export default function AdminProfile() {
         </div>
         <div className="flex-grow">
           <ProfileItem icon={<FaUser />} label="Name" value={profile.name} />
-          <ProfileItem icon={<FaEnvelope />} label="Email" value={profile.email} />
+          <ProfileItem
+            icon={<FaEnvelope />}
+            label="Email"
+            value={profile.email}
+          />
           <ProfileItem icon={<FaPhone />} label="Phone" value={profile.phone} />
-          <ProfileItem icon={<FaCalendar />} label="Join Date" value={profile.joinDate} />
+          <ProfileItem
+            icon={<FaCalendar />}
+            label="Join Date"
+            value={profile.joinDate}
+          />
         </div>
       </div>
     </div>
