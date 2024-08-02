@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
+import Marksentry from "./Marksentry"; // Make sure you import the Createnotice component
 
 export default function Ledgertable() {
   const [showLedger, setShowLedger] = useState(false);
+  const [showMarksEntry, setShowMarksEntry] = useState(false);
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [selectedExamType, setSelectedExamType] = useState("");
@@ -58,7 +60,7 @@ export default function Ledgertable() {
             id="examType"
             value={selectedExamType}
             onChange={(e) => setSelectedExamType(e.target.value)}
-            className="border-4 rounded px-2 py-1"
+            className="border rounded px-2 py-1"
           >
             <option value="">Select Exam Type</option>
             <option value="terminal">Terminal</option>
@@ -71,11 +73,19 @@ export default function Ledgertable() {
         >
           Generate Ledger
         </button>
-
-        <button className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-2 mt-6 rounded text-sm absolute top-4 right-4">
-          Marks Entry
+        <button
+          onClick={() => setShowMarksEntry(true)}
+          className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xs"
+        >
+          +Marks Entry
         </button>
       </div>
+
+      {showMarksEntry && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[101]">
+          <Marksentry onClose={() => setShowMarksEntry(false)} />
+        </div>
+      )}
 
       {showLedger && (
         <>
@@ -114,8 +124,7 @@ export default function Ledgertable() {
                     <input
                       id="checkbox-table-search-1"
                       type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800
-                       dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
                     <label
                       htmlFor="checkbox-table-search-1"
@@ -133,7 +142,7 @@ export default function Ledgertable() {
                   <img
                     className="w-10 h-10 rounded-full"
                     src="vssvsd"
-                    alt=" image"
+                    alt="image"
                   />
                   <div className="ps-3">
                     <div className="text-base font-semibold">
@@ -153,13 +162,13 @@ export default function Ledgertable() {
                     href="#"
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
-                    Edit{" "}
+                    Edit
                   </a>
                   <a
                     href="#"
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
-                    Delete{" "}
+                    Delete
                   </a>
                 </td>
               </tr>
