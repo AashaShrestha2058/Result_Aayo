@@ -17,7 +17,7 @@ export default function Ledgertable() {
     <div className="relative overflow-x-auto shadow-md">
       <div className="flex items-center justify-center space-x-4 mb-4 mt-10 mr-4">
         <div>
-          <label htmlFor="year" className="mr-2">
+          <label htmlFor="year" className="mr-2 dark:text-white">
             Year:
           </label>
           <select
@@ -34,7 +34,7 @@ export default function Ledgertable() {
           </select>
         </div>
         <div>
-          <label htmlFor="class" className="mr-2">
+          <label htmlFor="class" className="mr-2 dark:text-white">
             Class:
           </label>
           <select
@@ -51,14 +51,14 @@ export default function Ledgertable() {
           </select>
         </div>
         <div>
-          <label htmlFor="examType" className="mr-2">
+          <label htmlFor="examType" className="mr-2 dark:text-white">
             Exam Type:
           </label>
           <select
             id="examType"
             value={selectedExamType}
             onChange={(e) => setSelectedExamType(e.target.value)}
-            className="border rounded px-2 py-1"
+            className="border-4 rounded px-2 py-1"
           >
             <option value="">Select Exam Type</option>
             <option value="terminal">Terminal</option>
@@ -67,12 +67,12 @@ export default function Ledgertable() {
         </div>
         <button
           onClick={handleShowLedger}
-          className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 rounded text-xs"
+          className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white dark:text-white text-gray-700 py-2 px-2 rounded text-sm"
         >
-          Show Ledger
+          Generate Ledger
         </button>
 
-        <button className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xs absolute top-4 right-4">
+        <button className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-2 mt-6 rounded text-sm absolute top-4 right-4">
           Marks Entry
         </button>
       </div>
@@ -114,7 +114,8 @@ export default function Ledgertable() {
                     <input
                       id="checkbox-table-search-1"
                       type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800
+                       dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
                     <label
                       htmlFor="checkbox-table-search-1"

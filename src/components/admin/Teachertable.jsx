@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
 
-export default function Studenttable() {
+export default function Teachertable() {
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
 
@@ -14,8 +15,8 @@ export default function Studenttable() {
   const showTable = selectedYear && selectedClass;
 
   return (
-    <div className="relative overflow-x-auto shadow-md p-4">
-      <div className="flex space-x-4 mb-4">
+    <div className="relative overflow-x-auto shadow-md">
+      <div className="flex space-x-4 mb-4 p-4 justify-center mt-4">
         <select
           value={selectedYear}
           onChange={handleYearChange}
@@ -41,7 +42,7 @@ export default function Studenttable() {
           ))}
         </select>
 
-        <button className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xs absolute top-4 right-4">
+        <button className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 mt-4 rounded text-xls absolute top-4 right-4">
           +Add Student
         </button>
       </div>
