@@ -14,12 +14,12 @@ export default function RootLayout({ children }) {
         <div className="flex flex-1 mt-20">
           <div
             className={`${
-              menuOpen ? "w-72" : "w-15"
+              menuOpen ? "w-72 z-10" : "w-15 z-10"
             } transition-all duration-300`}
           >
             <Menu setMenuOpen={setMenuOpen} />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 z-0">
             <main>{children}</main>
           </div>
         </div>

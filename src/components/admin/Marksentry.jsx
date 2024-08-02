@@ -1,6 +1,6 @@
 import React from "react";
 
-function Createnotice({ onClose }) {
+function Marksentry({ onClose }) {
   return (
     <div>
       <div className="bg-white flex rounded-3xl shadow-2xl max-w-3xl p-3 relative">
@@ -18,7 +18,7 @@ function Createnotice({ onClose }) {
               className="h-12 w-12 mr-2"
             />
             <h1 className="text-[#253553] underline text-2xl font-bold">
-              __C r e a t e _ N o t i c e
+              __Mark entry
             </h1>
           </div>
 
@@ -43,10 +43,15 @@ function Createnotice({ onClose }) {
           </form>
         </div>
 
+        <div className="w-1/3">
+          <label for="photo-upload" class="cursor-pointer"></label>
+
+          <input type="file" id="photo-upload" class="hidden" />
+        </div>
         <img className="rounded-3xl" src="/assets/popup.png" alt="" />
       </div>
     </div>
   );
 }
 
-export default Createnotice;
+export default Marksentry;
