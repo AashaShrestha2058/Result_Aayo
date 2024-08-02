@@ -23,11 +23,13 @@ function Createnotice({ onClose }) {
           </div>
 
           <form className="flex-col gap-2">
+            <label className="">Title</label>
             <input
               className="txt p-2 mt-6 w-80 rounded-xl border shadow-xl "
               type="text"
               placeholder="     Title"
             />
+            <label className="">Image</label>
 
             <input
               className="txt p-2 mt-6  w-80 rounded-xl border shadow-xl"
@@ -36,7 +38,7 @@ function Createnotice({ onClose }) {
             />
 
             <button className="text-white shadow-xl font-bold bg-[#8AA4D6] w-80 p-3 mt-10 rounded-xl hover:bg-[#253553] duration-300">
-              A D D
+              C R E A T E N O T I C E
             </button>
           </form>
         </div>
