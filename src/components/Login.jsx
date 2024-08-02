@@ -13,7 +13,7 @@ export default function Login({ onClose }) {
     event.preventDefault();
 
     const { data, error } = await supabase
-      .from("login")
+      .from("teachers")
       .select("*")
       .eq("username", Username)
       .single();
@@ -28,8 +28,18 @@ export default function Login({ onClose }) {
     }
 
     if (data.password === Password) {
-      setErrorMessage("");
-      router.push("/admin");
+      try{
+        if(data.role === "admin"){
+          router.push("/admin");
+        }else if(data.role === "teacher"){
+          router.push("/teacher");
+        }else if(data.role === "student"){
+          router.push("/student");
+        }
+      }
+    catch(err){
+        console.log(err);
+      }
     } else {
       setErrorMessage("Login failed: Invalid username or password.");
     }
