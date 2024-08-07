@@ -1,12 +1,44 @@
-import React from "react";
+
+"use client";
+import React, { useEffect, useState } from "react";
 import {
   FaUsers,
   FaChalkboardTeacher,
-  FaGraduationCap,
-  FaBook,
 } from "react-icons/fa";
+import supabase from "@/utils/client";
 
 export default function Studentdashboard() {
+  const [studentCount, setStudentCount] = useState(0);
+  const [teacherCount, setTeacherCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        // Count students
+        const { count: studentCount, error: studentError } = await supabase
+          .from('students')
+          .select('*', { count: 'exact', head: true });
+
+        if (studentError) throw studentError;
+
+        setStudentCount(studentCount);
+
+        // Count teachers
+        const { count: teacherCount, error: teacherError } = await supabase
+          .from('teachers')
+          .select('*', { count: 'exact', head: true });
+
+        if (teacherError) throw teacherError;
+
+        setTeacherCount(teacherCount);
+      } catch (error) {
+        console.error("Error fetching counts:", error.message);
+      }
+    };
+
+    fetchCounts();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <header className="bg-white shadow">
@@ -21,12 +53,12 @@ export default function Studentdashboard() {
           <StatCard
             icon={<FaUsers className="text-blue-500" />}
             title="Total Students"
-            value="500"
+            value={studentCount}
           />
           <StatCard
             icon={<FaChalkboardTeacher className="text-green-500" />}
             title="Total Teachers"
-            value="50"
+            value={teacherCount}
           />
         </div>
 
