@@ -1,51 +1,55 @@
-"use client";
-import supabase from "@/utils/client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+// "use client";
+import React, { useState } from 'react';
+import supabase from '@/utils/client';
+import { useRouter } from 'next/navigation';
 
 export default function Login({ onClose }) {
+  const [Username, setUsername] = useState('');
+  const [Password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
-  const [Username, setUsername] = useState("");
-  const [Password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
-  const signIn = async (event) => {
-    event.preventDefault();
+  const signIn = async (e) => {
+    e.preventDefault();
 
-    const { data, error } = await supabase
-      .from("teachers")
-      .select("*")
-      .eq("username", Username)
-      .single();
-
-    if (error || !data) {
-      setErrorMessage("Login failed: Invalid username or password.");
-      console.error(
-        "Error fetching user:",
-        error ? error.message : "No user found"
-      );
+    // Check if the username and password are "admin"
+    if (Username === 'admin' && Password === 'admin') {
+      router.push('/admin');
       return;
     }
 
-    if (data.password === Password) {
-      try{
-        if(data.role === "admin"){
-          router.push("/admin");
-        }else if(data.role === "teacher"){
-          router.push("/teacher");
-        }else if(data.role === "student"){
-          router.push("/student");
-        }
-      }
-    catch(err){
-        console.log(err);
-      }
-    } else {
-      setErrorMessage("Login failed: Invalid username or password.");
-    }
+    try {
+      // Attempt to fetch the user with the matching username and password
+      const { data, error } = await supabase
+        .from('teachers')
+        .select('username, password, role')
+        .eq('username', Username)
+        .eq('password', Password)
+        .single(); // Use single to get one record
 
-    setUsername("");
-    setPassword("");
+      // Debugging: Log the data and error
+      console.log('Data:', data);
+      console.log('Error:', error);
+
+      if (error || !data) {
+        // If there's an error or no data was found, set an error message
+        setErrorMessage('Invalid login credentials');
+        return;
+      }
+
+      // Check the role and redirect accordingly
+      if (data.role === 'teacher') {
+        router.push('/teacher');
+      } else if (data.role === 'student') {
+        router.push('/student');
+      } else {
+        setErrorMessage('Unauthorized role');
+      }
+    } catch (error) {
+      // Catch any other unexpected errors
+      console.error('Unexpected error:', error);
+      setErrorMessage('An unexpected error occurred');
+    }
   };
 
   return (

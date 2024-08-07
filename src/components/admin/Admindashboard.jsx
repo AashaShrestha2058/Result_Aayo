@@ -13,21 +13,34 @@ import supabase from "@/utils/client";
 
 export default function Admindashboard() {
   const [totalTeachers, setTotalTeachers] = useState(0);
+  const [totalStudents, setTotalStudents] = useState(0);
 
   useEffect(() => {
-    const fetchTeacherCount = async () => {
-      const { count, error } = await supabase
+    const fetchCounts = async () => {
+      // Fetch teacher count
+      const { count: teacherCount, error: teacherError } = await supabase
         .from("teachers")
         .select("*", { count: "exact" });
 
-      if (error) {
-        console.error("Error fetching teacher count:", error);
+      if (teacherError) {
+        console.error("Error fetching teacher count:", teacherError);
       } else {
-        setTotalTeachers(count);
+        setTotalTeachers(teacherCount);
+      }
+
+      // Fetch student count
+      const { count: studentCount, error: studentError } = await supabase
+        .from("students")
+        .select("*", { count: "exact" });
+
+      if (studentError) {
+        console.error("Error fetching student count:", studentError);
+      } else {
+        setTotalStudents(studentCount);
       }
     };
 
-    fetchTeacherCount();
+    fetchCounts();
   }, []);
 
   return (
@@ -44,7 +57,7 @@ export default function Admindashboard() {
           <StatCard
             icon={<FaUsers className="text-blue-500" />}
             title="Total Students"
-            value="500"
+            value={totalStudents}
           />
           <StatCard
             icon={<FaChalkboardTeacher className="text-green-500" />}
