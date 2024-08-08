@@ -22,7 +22,7 @@ function Createnotice({ onClose }) {
             </h1>
           </div>
 
-          <form className="flex-col gap-2">
+          <form className="flex-col gap-4">
             <label className="">Title</label>
             <input
               className="txt p-2 mt-6 w-80 rounded-xl border shadow-xl "

@@ -22,31 +22,43 @@ function Createexam({ onClose }) {
             </h1>
           </div>
 
-          <form className="flex-col gap-2">
-            
+          <form className="flex-col gap-2 mt-6">
+            <label htmlFor="resultDate" className="mt-4 p-3 block">
+              Name:
+            </label>
             <input
-              className="txt p-2 mt-6 w-80 rounded-xl border shadow-xl "
+              className="txt p-2 rounded-xl border w-72 h-10 shadow-xl "
               type="text"
-              placeholder="  Name"
+              id="examName"
+              placeholder="Name"
             />
+
+            <label htmlFor="resultDate" className="mt-4 p-3 block">
+              Result Date:
+            </label>
             <input
-              className="txt p-2 mt-6 w-80 rounded-xl border shadow-xl"
+              className="txt p-2 rounded-xl w-72 h-10 border shadow-xl "
               type="date"
-              placeholder="  Result Date"
+              id="resultDate"
+              placeholder="Result Date"
             />
+
+            <label htmlFor="resultTime" className="mt-4 p-3 block">
+              Result Time:
+            </label>
             <input
-              className="txt p-2 mt-6 w-80 rounded-xl border shadow-xl "
+              className="txt p-2 rounded-xl w-72 h-10 border shadow-xl "
               type="time"
-              placeholder="    Result Time"
+              id="resultTime"
+              placeholder="Result Time"
             />
 
             <button className="text-white shadow-xl font-bold bg-[#8AA4D6] w-80 p-3 mt-10 rounded-xl hover:bg-[#253553] duration-300">
-              A D D 
+              A D D
             </button>
           </form>
         </div>
 
-    
         <img className="rounded-3xl" src="/assets/popup.png" alt="" />
       </div>
     </div>

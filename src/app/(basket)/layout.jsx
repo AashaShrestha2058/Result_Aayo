@@ -5,10 +5,9 @@ export default function RootLayout({ children }) {
   return (
     <div>
       <Navbar />
-      {children}
+      <div className=""> {children}</div>
       <Footer />
-      <Copyright/>
-      
+      <Copyright />
     </div>
   );
 }
