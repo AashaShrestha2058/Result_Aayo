@@ -1,12 +1,48 @@
-import React from "react";
+
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   FaUsers,
   FaChalkboardTeacher,
   FaGraduationCap,
   FaBook,
 } from "react-icons/fa";
+import supabase from "@/utils/client";
 
 export default function Admindashboard() {
+  const [totalTeachers, setTotalTeachers] = useState(0);
+  const [totalStudents, setTotalStudents] = useState(0);
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      // Fetch teacher count
+      const { count: teacherCount, error: teacherError } = await supabase
+        .from("teachers")
+        .select("*", { count: "exact" });
+
+      if (teacherError) {
+        console.error("Error fetching teacher count:", teacherError);
+      } else {
+        setTotalTeachers(teacherCount);
+      }
+
+      // Fetch student count
+      const { count: studentCount, error: studentError } = await supabase
+        .from("students")
+        .select("*", { count: "exact" });
+
+      if (studentError) {
+        console.error("Error fetching student count:", studentError);
+      } else {
+        setTotalStudents(studentCount);
+      }
+    };
+
+    fetchCounts();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
       <header className="bg-white shadow">
@@ -21,13 +57,14 @@ export default function Admindashboard() {
           <StatCard
             icon={<FaUsers className="text-blue-500" />}
             title="Total Students"
-            value="500"
+            value={totalStudents}
           />
           <StatCard
             icon={<FaChalkboardTeacher className="text-green-500" />}
             title="Total Teachers"
-            value="50"
+            value={totalTeachers}
           />
+          {/* Add other StatCards as needed */}
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -59,12 +96,18 @@ function QuickActions() {
     <div className="bg-white shadow rounded-lg p-6">
       <h3 className="text-lg font-semibold text-gray-900">Quick Actions</h3>
       <div className="mt-4 grid grid-cols-2 gap-4">
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+        <Link
+          href="/admin/add-student"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded text-center"
+        >
           Add Student
-        </button>
-        <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+        </Link>
+        <Link
+          href="/admin/add-teacher"
+          className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded text-center"
+        >
           Add Teacher
-        </button>
+        </Link>
         <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
           View Classes
         </button>

@@ -2,11 +2,17 @@
 
 import React, { useState } from "react";
 
+("use client");
+
+import React, { useState, useEffect } from "react";
+import supabase from "@/utils/client";
 import Addstudent from "./Addstudent";
 
 export default function Studenttable() {
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
+
+  const [students, setStudents] = useState([]);
   const [showAddStudent, setShowAddStudent] = useState(false);
 
   const years = ["2079", "2080", "2081"];
@@ -16,6 +22,44 @@ export default function Studenttable() {
   const handleClassChange = (e) => setSelectedClass(e.target.value);
 
   const showTable = selectedYear && selectedClass;
+
+  useEffect(() => {
+    if (showTable) {
+      const fetchStudents = async () => {
+        const { data, error } = await supabase
+          .from("students")
+          .select("*")
+          .eq("Year", selectedYear)
+          .eq("Class", selectedClass);
+
+        if (error) {
+          console.error("Error fetching students:", error);
+        } else {
+          setStudents(data);
+        }
+      };
+
+      fetchStudents();
+    }
+  }, [selectedYear, selectedClass]);
+
+  const handleEdit = (id) => {
+    console.log("Edit student with ID:", id);
+    // Logic for editing a student
+  };
+
+  const handleDelete = async (id) => {
+    const { error } = await supabase.from("students").delete().eq("id", id);
+
+    if (error) {
+      console.error("Error deleting student:", error);
+    } else {
+      setStudents((prevStudents) =>
+        prevStudents.filter((student) => student.id !== id)
+      );
+      console.log("Deleted student with ID:", id);
+    }
+  };
 
   return (
     <div className="relative overflow-x-auto shadow-md">
@@ -80,8 +124,9 @@ export default function Studenttable() {
                 <th scope="col">Year</th>
                 <th scope="col">Class</th>
                 <th scope="col">Roll No</th>
-
                 <th scope="col"> Full Name</th>
+
+                <th scope="col">Full Name</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Parent's Name</th>
                 <th scope="col">Contact</th>
@@ -152,6 +197,69 @@ export default function Studenttable() {
                   </a>
                 </td>
               </tr>
+              {students.map((student, index) => (
+                <tr
+                  key={index}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                >
+                  <td className="w-4 p-4">
+                    <div className="flex items-center">
+                      <input
+                        id={`checkbox-table-search-${index}`}
+                        type="checkbox"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        htmlFor={`checkbox-table-search-${index}`}
+                        className="sr-only"
+                      >
+                        checkbox
+                      </label>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">{student.id}</td>
+                  <td className="px-6 py-4">{student.Year}</td>
+                  <td className="px-6 py-4">{student.Class}</td>
+                  <td className="px-6 py-4">{student.RollNo}</td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src={student.Image}
+                      alt="Student image"
+                    />
+                    <div className="ps-3">
+                      <div className="text-base font-semibold">
+                        {student.Fullname}
+                      </div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4">{student.Email}</td>
+                  <td className="px-6 py-4">{student.ParentName}</td>
+                  <td className="px-6 py-4">{student.Contact}</td>
+                  <td className="px-6 py-4">{student.Address}</td>
+                  <td className="px-6 py-4">{student.DOB}</td>
+                  <td className="px-6 py-4">{student.Gender}</td>
+                  <td className="px-6 py-4">{student.username}</td>
+                  <td className="px-6 py-4">{student.password}</td>
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => handleEdit(student.id)}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(student.id)}
+                      className="font-medium text-red-600 dark:text-red-500 hover:underline ml-4"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </>
