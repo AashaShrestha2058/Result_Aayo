@@ -1,0 +1,9 @@
+{
+  "/page": "app/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/teacher/page": "app/teacher/page.js",
+  "/teacher/tledger/page": "app/teacher/tledger/page.js",
+  "/admin/teacher/page": "app/admin/teacher/page.js",
+  "/admin/add-student/page": "app/admin/add-student/page.js",
+  "/(basket)/Home/page": "app/(basket)/Home/page.js"
+}
