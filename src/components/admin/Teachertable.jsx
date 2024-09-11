@@ -1,106 +1,384 @@
-
 "use client";
-import React, { useEffect, useState } from 'react';
-import supabase from '@/utils/client'; // Adjust the path to your Supabase client setup
 
-const Teachertable = () => {
-  const [teachers, setTeachers] = useState([]);
+import React, { useState } from "react";
+import Addteacher from "@/components/admin/Addteacher";
 
-  useEffect(() => {
-    const fetchTeachers = async () => {
-      const { data, error } = await supabase
-        .from('teachers') 
-        .select('*');
-
-      if (error) {
-        console.error('Error fetching teachers:', error);
-      } else {
-        setTeachers(data);
-      }
-    };
-
-    fetchTeachers();
-  }, []);
-
-  const handleEdit = (id) => {
-    console.log(`Edit teacher with ID: ${id}`);
-    // Implement navigation to edit page or open a modal with the edit form
-    // For example:
-    // router.push(`/edit-teacher/${id}`);
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      const { error } = await supabase
-        .from('teachers')
-        .delete()
-        .eq('id', id);
-
-      if (error) {
-        console.error('Error deleting teacher:', error);
-      } else {
-        // Remove the deleted teacher from the state
-        setTeachers(teachers.filter(teacher => teacher.id !== id));
-      }
-    } catch (error) {
-      console.error('Unexpected error:', error);
-    }
-  };
+export default function Teachertable() {
+  const [showAddTeacher, setShowAddTeacher] = useState(false);
+  const [selectedYear, setSelectedYear] = useState("");
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" className="px-6 py-3">Name</th>
-            <th scope="col" className="px-6 py-3">Email</th>
-            <th scope="col" className="px-6 py-3">Gender</th>
-            <th scope="col" className="px-6 py-3">Date of Birth</th>
-            <th scope="col" className="px-6 py-3">Phone</th>
-            <th scope="col" className="px-6 py-3">Username</th>
-            <th scope="col" className="px-6 py-3">Password</th>
-            <th scope="col" className="px-6 py-3">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {teachers.map((teacher) => (
-            <tr key={teacher.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                <img
-                  className="w-10 h-10 rounded-full"
-                  src={teacher.Image} // Assuming 'Image' is the column name for image URL
-                  alt={teacher.Fullname}
-                />
-                <div className="ps-3">
-                  <div className="text-base font-semibold">{teacher.Fullname}</div>
-                </div>
-              </th>
-              <td className="px-6 py-4">{teacher.Email}</td>
-              <td className="px-6 py-4">{teacher.Gender}</td>
-              <td className="px-6 py-4">{teacher.DOB}</td>
-              <td className="px-6 py-4">{teacher.Contact}</td>
-              <td className="px-6 py-4">{teacher.username}</td> {/* Case-sensitive column name */}
-              <td className="px-6 py-4">{teacher.password}</td>
-              <td className="px-6 py-4">
-                <button
-                  onClick={() => handleEdit(teacher.id)}
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(teacher.id)}
-                  className="font-medium text-red-600 dark:text-red-500 hover:underline"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="relative mt-7">
+      <div className="flex justify-center items-center mb-4">
+        <select
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value)}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mr-3"
+        >
+          <option value="">Select Year</option>
+          <option value="2080">2080</option>
+          <option value="2081">2081</option>
+        </select>
+
+        <button
+          onClick={() => setShowAddTeacher(true)}
+          className="bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 py-2 px-4 rounded text-xs absolute right-4"
+        >
+          +Add Teacher
+        </button>
+      </div>
+
+      {showAddTeacher && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[101]">
+          <Addteacher onClose={() => setShowAddTeacher(false)} />
+        </div>
+      )}
+
+      {selectedYear && (
+        <div className="overflow-x-auto relative">
+          <div className="max-h-[500px] overflow-y-auto">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0 z-20">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 sticky left-0 z-10 bg-gray-50 dark:bg-gray-700"
+                  >
+                    Id
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 sticky left-[68px] z-10 bg-gray-50 dark:bg-gray-700"
+                  >
+                    Full Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 sticky left-[200px] z-10 bg-gray-50 dark:bg-gray-700"
+                  >
+                    Email
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Contact
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Address
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Date of Birth
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Username
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Password
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-6 py-4 sticky left-0 z-10 bg-white dark:bg-gray-800">
+                    1
+                  </td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white sticky left-[68px] z-10 bg-white dark:bg-gray-800"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src="vssvsd"
+                      alt=" image"
+                    />
+                    <div className="ps-3">
+                      <div className="text-base font-semibold">
+                        Supriya Shrestha
+                      </div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4 sticky left-[200px] z-10 bg-white dark:bg-gray-800">
+                    supriyabicte@gmail.com
+                  </td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">Female</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit{" "}
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Delete{" "}
+                    </a>
+                  </td>
+                </tr>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-6 py-4 sticky left-0 z-10 bg-white dark:bg-gray-800">
+                    1
+                  </td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white sticky left-[68px] z-10 bg-white dark:bg-gray-800"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src="vssvsd"
+                      alt=" image"
+                    />
+                    <div className="ps-3">
+                      <div className="text-base font-semibold">
+                        Supriya Shrestha
+                      </div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4 sticky left-[200px] z-10 bg-white dark:bg-gray-800">
+                    supriyabicte@gmail.com
+                  </td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">Female</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit{" "}
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Delete{" "}
+                    </a>
+                  </td>
+                </tr>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-6 py-4 sticky left-0 z-10 bg-white dark:bg-gray-800">
+                    1
+                  </td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white sticky left-[68px] z-10 bg-white dark:bg-gray-800"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src="vssvsd"
+                      alt=" image"
+                    />
+                    <div className="ps-3">
+                      <div className="text-base font-semibold">
+                        Supriya Shrestha
+                      </div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4 sticky left-[200px] z-10 bg-white dark:bg-gray-800">
+                    supriyabicte@gmail.com
+                  </td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">Female</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit{" "}
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Delete{" "}
+                    </a>
+                  </td>
+                </tr>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-6 py-4 sticky left-0 z-10 bg-white dark:bg-gray-800">
+                    1
+                  </td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white sticky left-[68px] z-10 bg-white dark:bg-gray-800"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src="vssvsd"
+                      alt=" image"
+                    />
+                    <div className="ps-3">
+                      <div className="text-base font-semibold">
+                        Supriya Shrestha
+                      </div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4 sticky left-[200px] z-10 bg-white dark:bg-gray-800">
+                    supriyabicte@gmail.com
+                  </td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">Female</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit{" "}
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Delete{" "}
+                    </a>
+                  </td>
+                </tr>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-6 py-4 sticky left-0 z-10 bg-white dark:bg-gray-800">
+                    1
+                  </td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white sticky left-[68px] z-10 bg-white dark:bg-gray-800"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src="vssvsd"
+                      alt=" image"
+                    />
+                    <div className="ps-3">
+                      <div className="text-base font-semibold">
+                        Supriya Shrestha
+                      </div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4 sticky left-[200px] z-10 bg-white dark:bg-gray-800">
+                    supriyabicte@gmail.com
+                  </td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">Female</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit{" "}
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Delete{" "}
+                    </a>
+                  </td>
+                </tr>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-6 py-4 sticky left-0 z-10 bg-white dark:bg-gray-800">
+                    1
+                  </td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white sticky left-[68px] z-10 bg-white dark:bg-gray-800"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src="vssvsd"
+                      alt=" image"
+                    />
+                    <div className="ps-3">
+                      <div className="text-base font-semibold">
+                        Supriya Shrestha
+                      </div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4 sticky left-[200px] z-10 bg-white dark:bg-gray-800">
+                    supriyabicte@gmail.com
+                  </td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">Female</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit{" "}
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Delete{" "}
+                    </a>
+                  </td>
+                </tr>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <td className="px-6 py-4 sticky left-0 z-10 bg-white dark:bg-gray-800">
+                    1
+                  </td>
+                  <th
+                    scope="row"
+                    className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white sticky left-[68px] z-10 bg-white dark:bg-gray-800"
+                  >
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src="vssvsd"
+                      alt=" image"
+                    />
+                    <div className="ps-3">
+                      <div className="text-base font-semibold">
+                        Supriya Shrestha
+                      </div>
+                    </div>
+                  </th>
+                  <td className="px-6 py-4 sticky left-[200px] z-10 bg-white dark:bg-gray-800">
+                    supriyabicte@gmail.com
+                  </td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">Female</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">supriyabicte@gmail.com</td>
+                  <td className="px-6 py-4">2002-12-23</td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit{" "}
+                    </a>
+                    <a
+                      href="#"
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Delete{" "}
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+         
+        </div>
+      )}
     </div>
   );
-};
-
-export default Teachertable;
+}

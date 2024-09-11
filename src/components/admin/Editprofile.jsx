@@ -19,8 +19,8 @@ export default function EditProfile() {
   const fileInputRef = useRef(null);
   const [profile, setProfile] = useState({
     name: "Admin User",
-    email: "admin@example.com",
-    phone: "+1 234 567 8900",
+    email: "admin123@gmail.com",
+    phone: "9824104129",
     joinDate: "2023-01-01",
     avatar: "/assets/Rabin.jpg",
   });
@@ -50,7 +50,7 @@ export default function EditProfile() {
   };
 
   return (
-    <div className="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-md relative">
+    <div className="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-md relative ">
       <button
         onClick={handleClose}
         className="absolute top-2 right-2 text-red-500 hover:text-red-700"

@@ -1,7 +1,6 @@
-
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import {
   FaUsers,
@@ -9,39 +8,11 @@ import {
   FaGraduationCap,
   FaBook,
 } from "react-icons/fa";
-import supabase from "@/utils/client";
 
 export default function Admindashboard() {
-  const [totalTeachers, setTotalTeachers] = useState(0);
-  const [totalStudents, setTotalStudents] = useState(0);
-
-  useEffect(() => {
-    const fetchCounts = async () => {
-      // Fetch teacher count
-      const { count: teacherCount, error: teacherError } = await supabase
-        .from("teachers")
-        .select("*", { count: "exact" });
-
-      if (teacherError) {
-        console.error("Error fetching teacher count:", teacherError);
-      } else {
-        setTotalTeachers(teacherCount);
-      }
-
-      // Fetch student count
-      const { count: studentCount, error: studentError } = await supabase
-        .from("students")
-        .select("*", { count: "exact" });
-
-      if (studentError) {
-        console.error("Error fetching student count:", studentError);
-      } else {
-        setTotalStudents(studentCount);
-      }
-    };
-
-    fetchCounts();
-  }, []);
+  // Placeholder values for statistics
+  const totalTeachers = 0;
+  const totalStudents = 0;
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
@@ -98,22 +69,32 @@ function QuickActions() {
       <div className="mt-4 grid grid-cols-2 gap-4">
         <Link
           href="/admin/add-student"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded text-center"
+          className=" bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 
+       font-semibold py-2 px-4 rounded text-center"
         >
           Add Student
         </Link>
         <Link
           href="/admin/add-teacher"
-          className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded text-center"
+          className=" bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 
+       font-semibold py-2 px-4 rounded text-center"
         >
           Add Teacher
         </Link>
-        <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
-          View Classes
-        </button>
-        <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
+        <Link
+          href="/admin/create-class"
+          className=" bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 
+       font-semibold py-2 px-4 rounded text-center"
+        >
+          Create Class
+        </Link>
+        <Link
+          href="/admin/create-exam"
+          className=" bg-[#8AA4D6] hover:bg-[#253553] hover:text-white text-gray-700 
+          font-semibold py-2 px-4 rounded text-center"
+        >
           Create Exam
-        </button>
+        </Link>
       </div>
     </div>
   );

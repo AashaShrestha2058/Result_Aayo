@@ -1,11 +1,13 @@
 import React from "react";
 
-import Studentdetail from "../../../components/teacher/Studentdetail";
+import Marksentry from "../../../components/admin/Marksentry";
+
 
 const page = () => {
   return (
     <div className="">
-      <Studentdetail />
+
+  <Marksentry/>
     </div>
   );
 };

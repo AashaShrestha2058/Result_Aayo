@@ -15,8 +15,8 @@ export default function AdminProfile() {
   const router = useRouter();
   const [profile, setProfile] = useState({
     name: "Admin User",
-    email: "admin@example.com",
-    phone: "+1 234 567 8900",
+    email: "admin123@gmail.com",
+    phone: "9824104129",
     joinDate: "2023-01-01",
     avatar: "/assets/Rabin.jpg",
   });
@@ -31,7 +31,7 @@ export default function AdminProfile() {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 max-w-2xl mx-auto mt-10 relative">
+    <div className="dark:bg-[#253553]  shadow-md rounded-lg p-6 max-w-2xl mx-auto mt-10 relative">
       <button
         onClick={handleClose}
         className="absolute top-2 right-2 text-red-500 hover:text-red-700"

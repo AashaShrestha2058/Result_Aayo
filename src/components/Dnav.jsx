@@ -73,9 +73,9 @@ export default function Dnav({ currentPath }) {
               <Image
                 src="/assets/Rabin.jpg"
                 width={40}
-                height={40}
+                height={50}
                 alt="Admin"
-                className="border-"
+                className="rounded-full"
               />
               <span className="text-white">Admin</span>
             </button>

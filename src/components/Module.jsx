@@ -2,14 +2,7 @@ import React from "react";
 
 function Module() {
   return (
-    <div className="bg-white-600 text-black dark:bg-gray-600 dark:text-white">
-      <div className="m-0 grid sm:grid-cols-12 grid-cols-1 p-4 h-auto bg-white-600 text-black dark:bg-gray-600 dark:text-white">
-        <div className="sm:col-span-12 p-4 ms-20">
-          {" "}
-          Our ERP platform is a complete education management solution
-        </div>
-      </div>
-
+    <div className="bg-white-600 text-black  mt-20">
       <div className="m-0 grid sm:grid-cols-12 grid-cols-1 p-4 h-auto">
         <div className="sm:col-span-6 p-4 ms-20">
           <img src="/assets/Modules.png" alt="Logo" className="mb-4" />

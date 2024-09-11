@@ -7,24 +7,27 @@ import Copyright from "../../components/Mini Component/Copyright";
 
 export default function RootLayout({ children }) {
   const [menuOpen, setMenuOpen] = useState(true);
+
   return (
     <html lang="en">
-      <div className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen">
         <Dnav />
-        <div className="flex flex-1 mt-20">
-          <div
-            className={`${
-              menuOpen ? "w-72" : "w-15"
-            } transition-all duration-300`}
-          >
+        <div className="flex flex-1 mt-20 mb-16">
+          <div className="fixed top-13 left-0 h-[calc(100vh-5rem)] z-50">
             <TMenu setMenuOpen={setMenuOpen} />
           </div>
-          <div className="flex-1">
-            <main>{children}</main>
-          </div>
+          <main
+            className={`flex-1 ${
+              menuOpen ? "ml-72" : "ml-20"
+            } transition-all duration-300 overflow-x-hidden`}
+          >
+            <div className="p-1">{children}</div>
+          </main>
         </div>
-        <Copyright />
-      </div>
+        <div className="fixed bottom-0 left-64 right-0 z-0 ">
+          <Copyright />
+        </div>
+      </body>
     </html>
   );
 }

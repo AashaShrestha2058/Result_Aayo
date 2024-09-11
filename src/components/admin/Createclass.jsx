@@ -1,5 +1,3 @@
-
-
 import React from "react";
 
 function Createclass({ onClose }) {
@@ -23,36 +21,43 @@ function Createclass({ onClose }) {
               Create Class
             </h1>
           </div>
+          <form className="flex flex-col gap-4 mt-6">
+            <div>
+              <label className="block mb-2">Class:</label>
+              <input
+                className="txt p-2 w-80 rounded-xl border shadow-xl"
+                type="text"
+                placeholder="Enter Class"
+              />
+            </div>
+            <div>
+              <label className="block mb-2">Section:</label>
+              <input
+                className="txt p-2 w-80 rounded-xl border shadow-xl"
+                type="text"
+                placeholder="Enter section"
+              />
+            </div>
 
-          <form className="flex-col gap-2">
-            
-            <input
-              className="txt p-2 mt-6 w-80 rounded-xl border shadow-xl "
-              type="text"
-              placeholder="  Name"
-            />
-            <input
-              className="txt p-2 mt-6 w-80 rounded-xl border shadow-xl"
-              type="date"
-              placeholder="  Result Date"
-            />
-            <input
-              className="txt p-2 mt-6 w-80 rounded-xl border shadow-xl "
-              type="time"
-              placeholder="    Result Time"
-            />
+            <div>
+              <label className="block mb-2">Subject:</label>
+              <input
+                className="txt p-2 w-80 rounded-xl border shadow-xl"
+                type="text"
+                placeholder="Enter subject"
+              />
+            </div>
 
-            <button className="text-white shadow-xl font-bold bg-[#8AA4D6] w-80 p-3 mt-10 rounded-xl hover:bg-[#253553] duration-300">
-              A D D 
+            <button className="text-white shadow-xl font-bold bg-[#8AA4D6] w-80 p-3 mt-6 rounded-xl hover:bg-[#253553] duration-300">
+              Create
             </button>
           </form>
         </div>
 
-    
         <img className="rounded-3xl" src="/assets/popup.png" alt="" />
       </div>
     </div>
   );
 }
 
-export default Createclass
+export default Createclass;

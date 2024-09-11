@@ -1,11 +1,11 @@
 import React from "react";
 
-import Studentdetail from "../../../components/teacher/Studentdetail";
+import Tmarksentry from "../../../components/teacher/Tmarksentry";
 
 const page = () => {
   return (
     <div className="">
-      <Studentdetail />
+      <Tmarksentry />
     </div>
   );
 };

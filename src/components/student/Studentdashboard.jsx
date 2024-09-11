@@ -1,10 +1,6 @@
-
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  FaUsers,
-  FaChalkboardTeacher,
-} from "react-icons/fa";
+import { FaUsers, FaChalkboardTeacher } from "react-icons/fa";
 import supabase from "@/utils/client";
 
 export default function Studentdashboard() {
@@ -16,8 +12,8 @@ export default function Studentdashboard() {
       try {
         // Count students
         const { count: studentCount, error: studentError } = await supabase
-          .from('students')
-          .select('*', { count: 'exact', head: true });
+          .from("students")
+          .select("*", { count: "exact", head: true });
 
         if (studentError) throw studentError;
 
@@ -25,8 +21,8 @@ export default function Studentdashboard() {
 
         // Count teachers
         const { count: teacherCount, error: teacherError } = await supabase
-          .from('teachers')
-          .select('*', { count: 'exact', head: true });
+          .from("teachers")
+          .select("*", { count: "exact", head: true });
 
         if (teacherError) throw teacherError;
 
@@ -48,24 +44,6 @@ export default function Studentdashboard() {
           </h1>
         </div>
       </header>
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard
-            icon={<FaUsers className="text-blue-500" />}
-            title="Total Students"
-            value={studentCount}
-          />
-          <StatCard
-            icon={<FaChalkboardTeacher className="text-green-500" />}
-            title="Total Teachers"
-            value={teacherCount}
-          />
-        </div>
-
-        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <RecentActivityFeed />
-        </div>
-      </main>
     </div>
   );
 }

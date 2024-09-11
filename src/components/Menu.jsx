@@ -7,6 +7,7 @@ import { RiDashboardFill } from "react-icons/ri";
 import { AiFillEnvironment } from "react-icons/ai";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
+import { LuClipboardEdit } from "react-icons/lu";
 import {
   FaGraduationCap,
   FaClipboardCheck,
@@ -24,6 +25,7 @@ const Menu = ({ setMenuOpen }) => {
     { title: "Teacher", icon: <CgProfile />, path: "/admin/teacher" },
     { title: "Student", icon: <FaGraduationCap />, path: "/admin/student" },
     { title: "Exam", icon: <FaClipboardCheck />, path: "/admin/exam" },
+
     { title: "Ledger", icon: <IoIosClipboard />, path: "/admin/ledger" },
     { title: "Class", icon: <FaChalkboardTeacher />, path: "/admin/class" },
     { title: "Notice", icon: <MdNotificationsActive />, path: "/admin/notice" },

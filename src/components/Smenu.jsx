@@ -6,25 +6,18 @@ import React from "react";
 import { RiDashboardFill } from "react-icons/ri";
 import { AiFillEnvironment } from "react-icons/ai";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { CgProfile } from "react-icons/cg";
-import {
-  FaGraduationCap,
-  FaClipboardCheck,
-  FaChalkboardTeacher,
-} from "react-icons/fa";
-import { IoIosClipboard } from "react-icons/io";
-import { MdNotificationsActive } from "react-icons/md";
+import { FaGraduationCap } from "react-icons/fa";
 
-const Menu = ({ setMenuOpen }) => {
+const Smenu = ({ setMenuOpen }) => {
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(true);
   const Menus = [
-    { title: "Dashboard", path: "/teacher/Teacherdashboard" },
+    { title: "Dashboard", path: "/student/Studentdashboard" },
     {
       title: "Gradesheet",
       icon: <FaGraduationCap />,
-      path: "/teacher/student",
+      path: "/student/gradesheet",
     },
   ];
 
@@ -53,25 +46,25 @@ const Menu = ({ setMenuOpen }) => {
           />
           <h1
             className={`text-white origin-left font-medium text-2xl duration-300 ${
-              !open && "scale-0"
+              !open && "scale-0 text-sm"
             }`}
           >
             Result Aayo
           </h1>
         </div>
 
-        <ul className="pt-2">
+        <ul className="pt-2 ">
           {Menus.map((menu, index) => (
             <li
               key={index}
-              className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-4 hover:bg-[#8AA4D6] rounded-md mt-2 ${
+              className={`text-gray-300 text-sm flex justify-center top-2 gap-x-4 cursor-pointer p-4 hover:bg-[#8AA4D6] rounded-md mt-2 ${
                 pathname === menu.path
                   ? "bg-[#8AA4D6] text-white font-bold"
                   : ""
-              }`}
+              } relative group`}
               onClick={() => router.push(menu.path)}
             >
-              <span className="text-2xl block float-left">
+              <span className="text-2xl">
                 {menu.icon ? menu.icon : <RiDashboardFill />}
               </span>
               <span
@@ -81,6 +74,11 @@ const Menu = ({ setMenuOpen }) => {
               >
                 {menu.title}
               </span>
+              {!open && (
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 rounded-md px-2 py-1 mb-2 bg-[#8AA4D6] text-white text-sm invisible opacity-20 translate-y-1 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-7 group-hover:translate-y-12 ">
+                  {menu.title}
+                </div>
+              )}
             </li>
           ))}
         </ul>
@@ -89,4 +87,4 @@ const Menu = ({ setMenuOpen }) => {
   );
 };
 
-export default Menu;
+export default Smenu;
