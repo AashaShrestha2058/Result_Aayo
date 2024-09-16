@@ -1,6 +1,9 @@
+"use client";
 import React from "react";
-
+import { TagsInput } from "react-tag-input-component";
+import { useState } from "react";
 function Createclass({ onClose }) {
+  const [subjects, setSubjects] = useState([]);
   return (
     <div>
       <div className="bg-white flex rounded-3xl shadow-2xl max-w-3xl p-3 relative">
@@ -41,10 +44,11 @@ function Createclass({ onClose }) {
 
             <div>
               <label className="block mb-2">Subject:</label>
-              <input
-                className="txt p-2 w-80 rounded-xl border shadow-xl"
-                type="text"
-                placeholder="Enter subject"
+              <TagsInput
+                value={subjects}
+                onChange={setSubjects}
+                name="Subjects"
+                placeHolder="Enter Subjects"
               />
             </div>
 

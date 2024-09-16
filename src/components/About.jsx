@@ -12,16 +12,15 @@ export default function About() {
         <div className="max-w-[1240px] m-auto md:grid grid-cols-3 gap-8">
           <div className="col-span-2">
             <p className="uppercase text-xl tracking-widest font-bold text-[#161366]">
-              {" "}
               About us
             </p>
             <h2 className="py-4 text-4xl">Who we are?</h2>
-            <p className="py-2 text-3xl font-bold text-gray-600 ">Team RAYS</p>
-            <p className="py-2 text-lg text-gray-600 ">
+            <p className="py-2 text-3xl font-bold text-gray-600">Team RAYS</p>
+            <p className="py-2 text-lg text-gray-600">
               We, Team Rays, comprised of Rabin, Aasha, Yubraj, and Supriya, are
-              BICTE students specializing in web application development.{" "}
+              BICTE students specializing in web application development.
             </p>
-            <p className="py-2 text-lg text-gray-600 ">
+            <p className="py-2 text-lg text-gray-600">
               We possess expertise in both front-end and back-end technologies,
               integrating user-friendly designs with robust server-side
               solutions. Focused on educational technology, we aim to innovate
@@ -30,21 +29,25 @@ export default function About() {
               in project management and collaboration, we strive to lead in the
               intersection of web development and digital education,
               continuously advancing our skills through practical experience and
-              community engagement.{" "}
-            </p>{" "}
-            <p className="py-2 text-gray-600 "></p>
+              community engagement.
+            </p>
+            <p className="py-2 text-gray-600"></p>
           </div>
           <div className="w-full h-auto m-auto shadow-2xl shadow-gray-400 flex items-center justify-center p-4 hover:scale-105 case-in duration-300">
-            <img src="/assets/Rays.jpeg" className="rounded-xl" />
+            <img src="/assets/Rays.jpeg" className="rounded-xl" /> {/* Keep this non-circular */}
           </div>
         </div>
       </div>
 
       <div className="max-w-[1240px] m-auto md:grid grid-cols-4 gap-20 mt-[-7%]">
+        {/* Rabin */}
         <div className="col-span-1 m-10 hover:scale-105 case-in duration-300">
-          <img src="assets/Rabin.jpg" className="size-52 rounded-full " />
+          <img
+            src="assets/Rabin.jpg"
+            className="w-52 h-52 rounded-full object-cover" // Ensures it's a perfect circle
+          />
           <p className="font-bold text-xl flex justify-center">Rabin Ale</p>
-          <p className=" flex justify-center">Full Stack Developer</p>
+          <p className="flex justify-center">Full Stack Developer</p>
           <br />
           <div className="md:grid grid-cols-3 gap-4">
             <a
@@ -61,7 +64,7 @@ export default function About() {
               target="_blank"
               rel="noreferrer"
             >
-              <div className="col-span-1  rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-110 ease-in duration-100 flex justify-center">
+              <div className="col-span-1 rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-110 ease-in duration-100 flex justify-center">
                 <FaGithub />
               </div>
             </a>
@@ -71,14 +74,18 @@ export default function About() {
               </div>
             </Link>
           </div>
-          <div></div>
         </div>
-        <div className="col-span-1 m-10 ">
-          <img src="assets/Aasha.jpg" className="size-52 rounded-full" />
+
+        {/* Aasha */}
+        <div className="col-span-1 m-10">
+          <img
+            src="assets/Aasha.jpg"
+            className="w-52 h-52 rounded-full object-cover" // Ensures it's a perfect circle
+          />
           <p className="font-bold text-xl flex justify-center">
             Aasha Shrestha
           </p>
-          <p className=" flex justify-center">Front End Developer</p>
+          <p className="flex justify-center">Front End Developer</p>
           <br />
           <div className="md:grid grid-cols-3 gap-4">
             <a
@@ -95,7 +102,7 @@ export default function About() {
               target="_blank"
               rel="noreferrer"
             >
-              <div className="col-span-1  rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-110 ease-in duration-100 flex justify-center">
+              <div className="col-span-1 rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-110 ease-in duration-100 flex justify-center">
                 <FaGithub />
               </div>
             </a>
@@ -106,12 +113,17 @@ export default function About() {
             </Link>
           </div>
         </div>
-        <div className="col-span-1 m-10 ">
-          <img src="assets/Yubraj.jpg" className="size-52 rounded-full" />
+
+        {/* Yubraj */}
+        <div className="col-span-1 m-10">
+          <img
+            src="assets/Yubraj.jpg"
+            className="w-52 h-52 rounded-full object-cover" // Ensures it's a perfect circle
+          />
           <p className="font-bold text-xl flex justify-center">
             Yubraj Dauliya
           </p>
-          <p className=" flex justify-center">Full Stack Developer</p>
+          <p className="flex justify-center">Full Stack Developer</p>
           <br />
           <div className="md:grid grid-cols-3 gap-4">
             <a
@@ -128,7 +140,7 @@ export default function About() {
               target="_blank"
               rel="noreferrer"
             >
-              <div className="col-span-1  rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-110 ease-in duration-100 flex justify-center">
+              <div className="col-span-1 rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-110 ease-in duration-100 flex justify-center">
                 <FaGithub />
               </div>
             </a>
@@ -139,12 +151,17 @@ export default function About() {
             </Link>
           </div>
         </div>
+
+        {/* Supriya */}
         <div className="col-span-1 m-10 hover:scale-105 case-in duration-300">
-          <img src="assets/Supriya.jpg" className="size-52 rounded-full" />
+          <img
+            src="assets/Supriya.jpg"
+            className="w-52 h-52 rounded-full object-cover" // Ensures it's a perfect circle
+          />
           <p className="font-bold text-xl flex justify-center">
             Supriya Shrestha
           </p>
-          <p className=" flex justify-center">Front End Developer</p>
+          <p className="flex justify-center">Front End Developer</p>
           <br />
           <div className="md:grid grid-cols-3 gap-4">
             <a
@@ -161,7 +178,7 @@ export default function About() {
               target="_blank"
               rel="noreferrer"
             >
-              <div className="col-span-1  rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-110 ease-in duration-100 flex justify-center">
+              <div className="col-span-1 rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer hover:scale-110 ease-in duration-100 flex justify-center">
                 <FaGithub />
               </div>
             </a>
